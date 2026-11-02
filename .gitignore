@@ -1,0 +1,15 @@
+# 本机设置（含书库路径）
+settings.json
+
+# 书库与索引。索引写不进书库时会落到 library_data
+LibeAdmin书库/
+library_data/
+
+# 编译产物和便携版
+app/src-tauri/target/
+dist/
+
+# 系统杂项
+Thumbs.db
+Desktop.ini
+.DS_Store

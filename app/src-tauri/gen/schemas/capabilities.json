@@ -1,0 +1,1 @@
+{"default":{"identifier":"default","description":"Main window: core IPC and events only; files are opened from Rust commands.","local":true,"windows":["main"],"permissions":["core:default","dialog:default","opener:allow-open-path","opener:allow-reveal-item-in-dir"]}}

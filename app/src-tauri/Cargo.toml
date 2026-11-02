@@ -1,0 +1,36 @@
+[package]
+name = "libadmin"
+version = "0.2.0"
+description = "LibAdmin 本地书库管理"
+edition = "2021"
+
+[lib]
+name = "libadmin_lib"
+crate-type = ["rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-opener = "2"
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rusqlite = { version = "0.37", features = ["bundled"] }
+fancy-regex = "0.14"
+regex = "1"
+pdfium-render = "0.9"
+zip = { version = "2", default-features = false, features = ["deflate"] }
+image = { version = "0.25", default-features = false, features = ["jpeg", "png", "gif", "webp", "pnm", "bmp"] }
+sha1_smol = "1"
+percent-encoding = "2"
+crossbeam-channel = "0.5"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.59", features = ["Win32_Storage_FileSystem", "Win32_Foundation"] }
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 4

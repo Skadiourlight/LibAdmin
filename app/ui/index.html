@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LibAdmin 书库</title>
+  <link rel="stylesheet" href="styles.css?v=12" />
+</head>
+<body>
+  <div id="scan-bar" class="scan-bar"><div></div></div>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo"><i></i><i></i><i></i></span>
+        <span>LibAdmin</span>
+      </div>
+      <label class="lib-switch" title="切换书库">
+        <svg viewBox="0 0 24 24"><path d="M4 5h6l2 2h8v12H4z" /></svg>
+        <select id="lib-select"></select>
+      </label>
+      <label class="search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" /><path d="M16 16l4.5 4.5" /></svg>
+        <input id="search" type="search" placeholder="搜索书名、作者、文件名、备注…" autocomplete="off" spellcheck="false" />
+        <kbd>Ctrl F</kbd>
+      </label>
+      <div class="spacer"></div>
+      <select id="sort" class="ghost-select" title="排序">
+        <option value="title">按标题</option>
+        <option value="author">按作者</option>
+        <option value="added">最近添加</option>
+      </select>
+      <label class="size-slider" title="磁贴大小">
+        <svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5" /><rect x="13" y="4" width="7" height="7" rx="1.5" /><rect x="4" y="13" width="7" height="7" rx="1.5" /><rect x="13" y="13" width="7" height="7" rx="1.5" /></svg>
+        <input id="tile-size" type="range" min="120" max="260" step="2" />
+      </label>
+      <button id="btn-new" class="btn primary"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></svg>新建条目</button>
+      <button id="btn-inspect" class="btn icon active" title="收回条目栏"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M15 4v16"/></svg></button>
+      <button id="btn-scan" class="btn icon" title="重新扫描 (F5)"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.34-5.66" /><path d="M20 4v5h-5" /></svg></button>
+      <button id="btn-menu" class="btn icon" title="更多"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.6" /><circle cx="12" cy="12" r="1.6" /><circle cx="19" cy="12" r="1.6" /></svg></button>
+    </header>
+
+    <aside class="sidebar">
+      <div class="seg" role="tablist">
+        <button data-tab="cat" class="active">分类</button>
+        <button data-tab="author">作者</button>
+        <button data-tab="lang">语言</button>
+      </div>
+      <div class="panel" id="panel-cat">
+        <div class="nav" id="nav-fixed"></div>
+        <div class="tree-head" id="tree-root-drop">
+          <span>类别</span>
+          <button id="btn-add-cat" class="mini" title="新建类别"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></svg></button>
+        </div>
+        <div id="cat-tree" class="tree"></div>
+        <div class="nav bottom" id="nav-removed"></div>
+      </div>
+      <div class="panel hidden" id="panel-author">
+        <input id="author-filter" class="field small" type="search" placeholder="查找作者…" />
+        <div id="author-list" class="list"></div>
+      </div>
+      <div class="panel hidden" id="panel-lang">
+        <div id="lang-list" class="list"></div>
+      </div>
+    </aside>
+    <div class="gutter" id="gutter-side" title="拖动调节宽度"></div>
+
+    <main class="content" id="view-library">
+      <div class="content-head">
+        <h1 id="view-title">全部</h1>
+        <span id="view-count" class="count"></span>
+        <div id="filter-chips" class="chips"></div>
+      </div>
+      <div id="grid" class="grid" tabindex="0"></div>
+      <div id="empty" class="empty hidden"></div>
+    </main>
+    <div class="gutter" id="gutter-inspect" title="拖动调节宽度"></div>
+    <aside id="inspect" class="inspect"></aside>
+    <main class="content page-detail hidden" id="view-detail"></main>
+
+    <footer class="statusbar">
+      <span id="status"></span>
+      <span class="spacer"></span>
+      <span id="progress"></span>
+      <span id="index-loc" class="muted"></span>
+    </footer>
+  </div>
+
+  <div id="menu" class="ctx-menu hidden"></div>
+  <div id="modal-root"></div>
+  <div id="toasts" class="toasts"></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
